@@ -1,0 +1,41 @@
+image: docker.internal.33across.com/ruby:1.9.3-p551
+before_script:
+  - source /usr/local/rvm/scripts/rvm
+  - bundle install --path vendor/bundle
+test:
+  stage: test
+  
+  script:
+    - bundle exec rspec
+  cache:
+    paths:
+      - vendor/bundle
+  artifacts:
+    paths:
+      - coverage/
+    expire_in: 52 weeks
+
+build:
+  stage: build
+  script:
+    - "gem build *.gemspec"
+  cache:
+    paths:
+      - vendor/bundle
+  artifacts:
+    paths:
+      - "*.gem"
+  only:
+    - tags
+      
+publish:
+  stage: deploy
+  before_script:
+    - echo "Skipping global before_script"
+    - source /usr/local/rvm/scripts/rvm
+  script:
+    - "gem nexus --url \"https://nexus.internal.33across.com/repository/ruby\" --credential \"$NEXUS_USERNAME:$NEXUS_PASSWORD\" *.gem"
+  dependencies:
+    - build
+  only:
+    - tags
