@@ -9,11 +9,12 @@ before_script:
   - gem install -v "< 12.3" rake #12.2.1 ok, 12.3.0 requires ruby 2
 
   - bundle install #--path vendor/bundle
-  - rm Gemfile #funky interaction between Gemfile detection and jeweler
+
 test:
   stage: test
   
   script:
+    - rm Gemfile #funky interaction between Gemfile detection and jeweler
     - rake
   cache:
     paths:
