@@ -11,8 +11,10 @@ class Zabbix::Sender
       config = Zabbix::Agent::Configuration.read(opts[:config_file])
       @server_host  = config.server
       @server_port  = config.server_port || DEFAULT_SERVER_PORT
+      @client_host  = config.hostname if config.hostname
     end
 
+    #if host specified, ignore port if defined in config file?
     if opts[:host]
       @server_host = opts[:host]
       @server_port = opts[:port] || DEFAULT_SERVER_PORT

@@ -48,6 +48,16 @@ corrected a few syntax errors.
   (if you want to have your own version, that is fine but bump version in a commit by itself I can ignore when I pull)
 * Send me a pull request. Bonus points for topic branches.
 
+== Development notes
+
+=== Dependencies
+
+* Requires jeweler (tested with 2.1.2) ... once that's installed, the `check_dependencies` rake task will prompt for others
+
+=== Test configuration
+
+* edit `test/zabbix_agentd.conf` and set `Server=` to your actual server if you want the tests to pass
+
 == Copyright
 
 Copyright (c) 2010 Matthew Knopp. See LICENSE for details.

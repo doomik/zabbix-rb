@@ -18,6 +18,12 @@ class TestZabbix < Test::Unit::TestCase
     assert_equal true, zbx.configured?
   end 
 
+  should "use client_host from config file" do
+    config_file = "#{File.dirname(__FILE__)}/zabbix_agentd.conf"
+    zbx = Zabbix::Sender.new :config_file => config_file
+    assert_equal "myfancyhostname", zbx.send(:cons_zabbix_data_element, 'k', 'v')[:host]
+  end
+
   should "should send start stop and heartbeat" do
     config_file = "#{File.dirname(__FILE__)}/zabbix_agentd.conf"
     zbx  = Zabbix::Sender.new :config_file => config_file

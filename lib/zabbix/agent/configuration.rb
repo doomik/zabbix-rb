@@ -12,6 +12,10 @@ module Zabbix::Agent
       @config['ServerPort']
     end
 
+    def hostname
+      @config['Hostname']
+    end
+
     def listen_port
       @config['ListenPort']
     end
