@@ -1,13 +1,13 @@
 PATH
   remote: .
   specs:
-    zabbix (0.4.0.im2)
+    zabbix (0.4.0.im3)
       yajl-ruby
 
 GEM
   remote: https://nexus.internal.33across.com/repository/rubygem/
   specs:
-    activesupport (4.2.1)
+    activesupport (4.2.10)
       i18n (~> 0.7)
       json (~> 1.7, >= 1.7.7)
       minitest (~> 5.1)
@@ -78,8 +78,8 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  jeweler (< 2.2.1)
-  rake (< 12.3)
+  jeweler
+  rake
   shoulda
   zabbix!
 
