@@ -78,7 +78,7 @@ class Zabbix::Sender
   def send_zabbix_request(data)
     status  = false
     request = Yajl::Encoder.encode({
-      :request => 'agent data' ,
+      :request => 'sender data' ,
       :clock   => Time.now.to_i,
       :data    => data
     })
@@ -98,6 +98,7 @@ class Zabbix::Sender
       status   = true if response['response'] == 'success'
     rescue => e
       ## FIXME
+      raise e
     ensure
       disconnect
     end
